@@ -1,0 +1,6 @@
+module Pods_kaderApp_kaderAppTests {
+  umbrella header "Pods-kaderApp-kaderAppTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

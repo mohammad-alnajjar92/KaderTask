@@ -1,0 +1,6 @@
+module Pods_kaderApp {
+  umbrella header "Pods-kaderApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
