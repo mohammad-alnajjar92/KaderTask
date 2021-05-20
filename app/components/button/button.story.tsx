@@ -11,7 +11,7 @@ const buttonStyleArray: ViewStyle[] = [{ paddingVertical: 100 }, { borderRadius:
 const buttonTextStyleArray: TextStyle[] = [{ fontSize: 20 }, { color: "#a511dc" }]
 
 storiesOf("Button", module)
-  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Style Presets", () => (
     <Story>
       <UseCase text="Primary" usage="The primary button.">

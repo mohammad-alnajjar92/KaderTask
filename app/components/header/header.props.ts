@@ -1,12 +1,11 @@
-import { StyleProp, TextStyle, ViewStyle } from "react-native"
+import { ViewStyle, TextStyle } from "react-native"
 import { IconTypes } from "../icon/icons"
-import { TxKeyPath } from "../../i18n"
 
 export interface HeaderProps {
   /**
-   * Main header, e.g. POWERED BY IGNITE
+   * Main header, e.g. POWERED BY BOWSER
    */
-  headerTx?: TxKeyPath
+  headerTx?: string
 
   /**
    * header non-i18n
@@ -36,10 +35,10 @@ export interface HeaderProps {
   /**
    * Container style overrides.
    */
-  style?: StyleProp<ViewStyle>
+  style?: ViewStyle
 
   /**
    * Title style overrides.
    */
-  titleStyle?: StyleProp<TextStyle>
+  titleStyle?: TextStyle
 }

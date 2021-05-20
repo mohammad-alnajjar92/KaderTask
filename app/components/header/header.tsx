@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FunctionComponent as Component } from "react"
 import { View, ViewStyle, TextStyle } from "react-native"
 import { HeaderProps } from "./header.props"
 import { Button } from "../button/button"
@@ -24,7 +24,7 @@ const RIGHT: ViewStyle = { width: 32 }
 /**
  * Header that appears on many screens. Will hold navigation buttons and screen title.
  */
-export function Header(props: HeaderProps) {
+export const Header: Component<HeaderProps> = props => {
   const {
     onLeftPress,
     onRightPress,
@@ -38,7 +38,7 @@ export function Header(props: HeaderProps) {
   const header = headerText || (headerTx && translate(headerTx)) || ""
 
   return (
-    <View style={[ROOT, style]}>
+    <View style={{ ...ROOT, ...style }}>
       {leftIcon ? (
         <Button preset="link" onPress={onLeftPress}>
           <Icon icon={leftIcon} />
@@ -47,7 +47,7 @@ export function Header(props: HeaderProps) {
         <View style={LEFT} />
       )}
       <View style={TITLE_MIDDLE}>
-        <Text style={[TITLE, titleStyle]} text={header} />
+        <Text style={{ ...TITLE, ...titleStyle }} text={header} />
       </View>
       {rightIcon ? (
         <Button preset="link" onPress={onRightPress}>

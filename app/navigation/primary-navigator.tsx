@@ -5,8 +5,8 @@
  * You'll likely spend most of your time in this file.
  */
 import React from "react"
-import { createStackNavigator } from "@react-navigation/stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen } from "../screens"
+import { createNativeStackNavigator } from "react-native-screens/native-stack";
+import {MoviesScreen,MovieDetailsScreen} from "../screens"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -21,27 +21,29 @@ import { WelcomeScreen, DemoScreen, DemoListScreen } from "../screens"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type PrimaryParamList = {
-  welcome: undefined
-  demo: undefined
-  demoList: undefined
+  movies:undefined
+  movieDetails:undefined
+
 }
+// Documentation: https://github.com/software-mansion/react-native-screens/tree/master/native-stack
+const Stack = createNativeStackNavigator<PrimaryParamList>()
 
-// Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createStackNavigator<PrimaryParamList>()
 
-export function MainNavigator() {
+export function PrimaryNavigator() {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        gestureEnabled: false,
       }}
     >
-      <Stack.Screen name="welcome" component={WelcomeScreen} />
-      <Stack.Screen name="demo" component={DemoScreen} />
-      <Stack.Screen name="demoList" component={DemoListScreen} />
+       <Stack.Screen name="movies" component={MoviesScreen} />
+      <Stack.Screen name="movieDetails" component={MovieDetailsScreen} />
+
     </Stack.Navigator>
   )
 }
+
 
 /**
  * A list of routes from which we're allowed to leave the app when
@@ -52,5 +54,5 @@ export function MainNavigator() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ["welcome"]
+const exitRoutes = ["movies"]
 export const canExit = (routeName: string) => exitRoutes.includes(routeName)

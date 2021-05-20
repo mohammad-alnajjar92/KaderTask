@@ -2,7 +2,6 @@ import React from "react"
 import { Image } from "react-native"
 import { presets } from "./wallpaper.presets"
 import { WallpaperProps } from "./wallpaper.props"
-import { flatten } from "ramda"
 
 const defaultImage = require("./bg.png")
 
@@ -17,10 +16,10 @@ export function Wallpaper(props: WallpaperProps) {
 
   // assemble the style
   const presetToUse = presets[preset] || presets.stretch
-  const styles = flatten([presetToUse, styleOverride])
+  const style = { ...presetToUse, ...styleOverride }
 
   // figure out which image to use
   const source = backgroundImage || defaultImage
 
-  return <Image source={source} style={styles} />
+  return <Image source={source} style={style} />
 }

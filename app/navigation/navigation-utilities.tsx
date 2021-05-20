@@ -54,33 +54,32 @@ export function useBackButtonHandler(
     // We'll fire this when the back button is pressed on Android.
     const onBackPress = () => {
       const navigation = ref.current
+       console.log("********",navigation)
+      // if (navigation == null) {
+      //   return false
+      // }
+      // navigation.navigate('TabsNavigator')
+      // // // grab the current route
+      // // const routeName = getActiveRouteName(navigation.getRootState())
 
-      if (navigation == null) {
-        return false
-      }
+      // // // are we allowed to exit?
+      // // if (canExitRef.current(routeName)) {
+      // //   // let the system know we've not handled this event
+      // //   return false
+      // // }
 
-      // grab the current route
-      const routeName = getActiveRouteName(navigation.getRootState())
+      // // we can't exit, so let's turn this into a back action
+      // if (navigation.canGoBack()) {
+      //   navigation.navigate('TabsNavigator')
 
-      // are we allowed to exit?
-      if (canExitRef.current(routeName)) {
-        // let the system know we've not handled this event
-        return false
-      }
-
-      // we can't exit, so let's turn this into a back action
-      if (navigation.canGoBack()) {
-        navigation.goBack()
-
-        return true
-      }
+      //   return false
+      // }
 
       return false
     }
 
     // Subscribe when we come to life
-    BackHandler.addEventListener("hardwareBackPress", onBackPress)
-
+    BackHandler.addEventListener('hardwareBackPress',onBackPress)
     // Unsubscribe when we're done
     return () => BackHandler.removeEventListener("hardwareBackPress", onBackPress)
   }, [ref])
@@ -94,7 +93,7 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
   const [isRestoringNavigationState, setIsRestoringNavigationState] = useState(true)
 
   const routeNameRef = useRef()
-  const onNavigationStateChange = (state) => {
+  const onNavigationStateChange = state => {
     const previousRouteName = routeNameRef.current
     const currentRouteName = getActiveRouteName(state)
 

@@ -1,11 +1,11 @@
 import Tron from "reactotron-react-native"
-import AsyncStorage from "@react-native-async-storage/async-storage"
+import AsyncStorage from "@react-native-community/async-storage"
 import { RootStore } from "../../models/root-store/root-store"
 import { onSnapshot } from "mobx-state-tree"
 import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotron-config"
 import { mst } from "reactotron-mst"
 import { clear } from "../../utils/storage"
-import { RootNavigation } from "../../navigators"
+import { RootNavigation } from "../../navigation"
 
 // Teach TypeScript about the bad things we want to do.
 declare global {
@@ -96,11 +96,12 @@ export class Reactotron {
       }
       // log state changes?
       if (snapshots) {
-        onSnapshot(rootStore, (snapshot) => {
+        onSnapshot(rootStore, snapshot => {
           console.tron.display({ name, value: snapshot, preview: "New State" })
         })
       }
 
+      // @ts-ignore
       console.tron.trackMstNode(rootStore)
     }
   }
@@ -131,7 +132,7 @@ export class Reactotron {
       // hookup mobx-state-tree middleware
       Tron.use(
         mst({
-          filter: (event) => RX.test(event.name) === false,
+          filter: event => RX.test(event.name) === false,
         }),
       )
 

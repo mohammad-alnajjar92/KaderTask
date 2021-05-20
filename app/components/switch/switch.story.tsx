@@ -49,7 +49,7 @@ const thumbOnStyle: ViewStyle[] = [
 ]
 
 storiesOf("Switch", module)
-  .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
+  .addDecorator(fn => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
       <UseCase text="The Toggle Switch" usage="Use the switch to represent on/off states.">

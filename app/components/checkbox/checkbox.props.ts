@@ -1,21 +1,20 @@
-import { StyleProp, ViewStyle } from "react-native"
-import { TxKeyPath } from "../../i18n"
+import { ViewStyle } from "react-native"
 
 export interface CheckboxProps {
   /**
    * Additional container style. Useful for margins.
    */
-  style?: StyleProp<ViewStyle>
+  style?: ViewStyle | ViewStyle[]
 
   /**
    * Additional outline style.
    */
-  outlineStyle?: StyleProp<ViewStyle>
+  outlineStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Additional fill style. Only visible when checked.
    */
-  fillStyle?: StyleProp<ViewStyle>
+  fillStyle?: ViewStyle | ViewStyle[]
 
   /**
    * Is the checkbox checked?
@@ -30,7 +29,7 @@ export interface CheckboxProps {
   /**
    * The i18n lookup key.
    */
-  tx?: TxKeyPath
+  tx?: string
 
   /**
    * Multiline or clipped single line?

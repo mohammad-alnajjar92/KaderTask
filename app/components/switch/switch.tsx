@@ -1,8 +1,8 @@
-import React from "react"
+import React, { FunctionComponent as Component } from "react"
 import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
 import { color } from "../../theme"
 import { SwitchProps } from "./switch.props"
-import { flatten } from "ramda"
+import { mergeAll, flatten } from "ramda"
 
 // dimensions
 const THUMB_SIZE = 30
@@ -47,12 +47,12 @@ const THUMB: ViewStyle = {
 }
 
 const enhance = (style, newStyles): any => {
-  return flatten([style, newStyles])
+  return mergeAll(flatten([style, newStyles]))
 }
 
-const makeAnimatedValue = (switchOn) => new Animated.Value(switchOn ? 1 : 0)
+const makeAnimatedValue = switchOn => new Animated.Value(switchOn ? 1 : 0)
 
-export function Switch(props: SwitchProps) {
+export const Switch: Component<SwitchProps> = props => {
   const [timer] = React.useState<Animated.Value>(makeAnimatedValue(props.value))
   const startAnimation = React.useMemo(
     () => (newValue: boolean) => {

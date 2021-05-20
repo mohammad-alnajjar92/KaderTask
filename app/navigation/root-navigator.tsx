@@ -1,13 +1,16 @@
 /**
  * The root navigator is used to switch between major navigation flows of your app.
  * Generally speaking, it will contain an auth flow (registration, login, forgot password)
- * and a "main" flow (which is contained in your MainNavigator) which the user
+ * and a "main" flow (which is contained in your PrimaryNavigator) which the user
  * will use once logged in.
  */
 import React from "react"
 import { NavigationContainer, NavigationContainerRef } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack"
-import { MainNavigator } from "./main-navigator"
+
+import { createNativeStackNavigator } from "react-native-screens/native-stack"
+
+import { PrimaryNavigator} from "./primary-navigator"
+
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -20,25 +23,30 @@ import { MainNavigator } from "./main-navigator"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type RootParamList = {
-  mainStack: undefined
+  primaryStack: undefined
 }
 
-const Stack = createStackNavigator<RootParamList>()
+
+
+const Stack = createNativeStackNavigator<RootParamList>()
 
 const RootStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        gestureEnabled: true,
+
+        stackPresentation: "modal",
       }}
     >
       <Stack.Screen
-        name="mainStack"
-        component={MainNavigator}
+        name="primaryStack"
+        component={PrimaryNavigator}
         options={{
           headerShown: false,
         }}
-      />
+      />  
     </Stack.Navigator>
   )
 }
